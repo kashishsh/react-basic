@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - Template</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css"></link>
+    <script src="../src/react.min.js"></script>
+    <script src="../src/react-dom.min.js"></script>
+    <script src="../src/browser.min.js"></script>
+    <!--
+        * refs is used to take reference of child elements.
+        * Instead of giving an id, we can give refs and can use refs to access that child element.
+    -->
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <script type="text/babel">
+        var Comment = React.createClass({
+            getInitialState: function(){
+                return {
+                    editing: false
+                }
+            },
+            edit: function(){
+                this.setState({editing: true});
+            },
+            save: function(){
+                var value = this.refs.newText.value;
+                console.log(value);
+                this.setState({editing: false});
+            },
+            remove: function(){
+                console.log('removing');
+            },
+            renderNormal: function(){
+                return (
+                    <div className= "commentContainer" >
+                        <div className= "commentText">{this.props.children}</div>
+                        <button className= "button-primary" onClick={this.edit}>Edit</button>
+                        <button className= "button-danger" onClick={this.remove}>Remove</button>
+                    </div>
+                );
+            },
+            renderForm: function(){
+                return (
+                    <div className= "commentContainer" >
+                        <textarea ref="newText" defaultValue={this.props.children}></textarea>
+                        <button className= "button-success" onClick={this.save}>Save</button>
+                    </div>
+                );
+            },
+            render: function(){
+                if(this.state.editing){
+                    return this.renderForm();
+                }else{
+                    return this.renderNormal();
+                }
+            }
+        });
+
+        ReactDOM.render(
+            <div className= "board">
+                <Comment> comment1 </Comment>
+                <Comment> comment2</Comment>
+                <Comment> comment3</Comment>
+            </div> , document.getElementById('container'));
+    </script>
+
+</body>
+</html>

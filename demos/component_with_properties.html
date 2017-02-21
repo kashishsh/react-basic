@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - Template</title>
+    <script src="../src/react.min.js"></script>
+    <script src="../src/react-dom.min.js"></script>
+    <script src="../src/browser.min.js"></script>
+    <!-- 
+        * Properties allows you to customize your component.
+        * A property is a html attribute which we can pass in to customize our component in different ways.
+        * Properties once set for a component remains unchanged for its lifetime.
+    -->
+</head>
+<body>
+
+    <div id="app"></div>
+
+    <script type="text/babel">
+        var Country = React.createClass({
+            render: function(){
+                return (
+                    <div>
+                        <h1>Country: {this.props.name}</h1>
+                        <h3>Capital: {this.props.capital}</h3>
+                    </div>
+                );
+            }
+        });
+        ReactDOM.render(
+            <div>
+                <Country name="India" capital="New Delhi"/>
+                <Country name="Australia" capital="Canberra"/>
+                <Country name="China" capital="Beijing"/>
+                <Country name="United States of America" capital="Washington, D.C."/>   
+            </div>,
+            document.getElementById('app')
+        );
+    </script>
+
+</body>
+</html>

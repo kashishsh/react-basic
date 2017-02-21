@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - Template</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css"></link>
+    <script src="../src/react.min.js"></script>
+    <script src="../src/react-dom.min.js"></script>
+    <script src="../src/browser.min.js"></script>
+    <!-- 
+        * class is already a reserved keyword in react, so we use className.
+        * this.props.children gives you the content/children of a component.
+    -->
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <script type="text/babel">
+        var Comment = React.createClass({
+            edit: function(){
+                alert('editing');
+            },
+            remove: function(){
+                alert('removing');
+            },
+            render: function(){
+                return (
+                    <div className= "commentContainer" >
+                        <div className= "commentText">This is a test comment</div>
+                        <button className= "button-primary" onClick={this.edit}>Edit</button>
+                        <button className= "button-danger" onClick={this.remove}>Remove</button>
+                    </div>
+                );
+            }
+        });
+
+        ReactDOM.render(
+            <div className= "board">
+                <Comment />
+                <Comment />
+                <Comment />
+            </div> , document.getElementById('container'));
+    </script>
+
+</body>
+</html>

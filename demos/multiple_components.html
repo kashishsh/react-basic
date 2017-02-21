@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - Template</title>
+    <script src="../src/react.min.js"></script>
+    <script src="../src/react-dom.min.js"></script>
+    <script src="../src/browser.min.js"></script>
+    <!-- 
+        * Every single component can return a single parent element. If there are multiple html elements inside an component, make sure to wrap them in a single parent element.
+        * Same rules are applied for ReactDOM.render function.
+    -->
+</head>
+<body>
+
+    <div id="example"></div>
+
+    <script type="text/babel">
+        var FirstComponent = React.createClass({
+            render: function() {
+                return (
+                    <div>
+                        <h2>This is a simple component</h2>
+                        <p>This is a simple paragraph</p>
+                    </div>
+                );
+            }
+        });
+        ReactDOM.render(<div>
+            <FirstComponent />
+            <FirstComponent />
+            <FirstComponent />
+            <FirstComponent />
+        </div>, document.getElementById('example'));
+    </script>
+
+</body>
+</html>

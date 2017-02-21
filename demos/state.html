@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - Template</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css"></link>
+    <script src="../src/react.min.js"></script>
+    <script src="../src/react-dom.min.js"></script>
+    <script src="../src/browser.min.js"></script>
+    <!-- 
+        * As properties once saved can not be changed for whole life of component, We use state for such cases.
+        * getInitialState is used to set the initial state of the component.
+        * defaultChecked is used to set the default status of checkbox.
+        * setState is used to reset the state of a component.
+        * Once the state changes for a component, whole component is redrawn.
+    -->
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <script type="text/babel">
+        var Checkbox = React.createClass({
+            getInitialState: function(){
+                return {
+                    checked: true
+                };
+            },
+            handleChange: function(){
+                this.setState({checked: !this.state.checked});
+            },
+            render: function(){
+                var msg = (this.state.checked) ? 'checked' : 'unchecked';
+                return (
+                    <div>
+                        <input type="checkbox" defaultChecked= {this.state.checked} onChange={this.handleChange} />    
+                        <p>Checkbox is {msg}</p>
+                    </div>
+                );
+            }
+        });
+
+        ReactDOM.render(<Checkbox />, document.getElementById("container"));
+    </script>
+
+</body>
+</html>
