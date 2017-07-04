@@ -26,13 +26,12 @@
             edit: function(){
                 this.setState({editing: true});
             },
-            save: function(){
-                var value = this.refs.newText.value;
-                console.log(value);
+            save: function(){                
+                this.props.updateCommentText(this.refs.newText.value, this.props.index);
                 this.setState({editing: false});
             },
             remove: function(){
-                console.log('removing');
+                this.props.removeComment(this.props.index);
             },
             renderNormal: function(){
                 return (
@@ -64,15 +63,15 @@
             getInitialState: function(){
                 return {
                     comments: [
-                        'My name is Ashish',
-                        'I live in Agra',
-                        'I am a software engineer'
+                        'Test comment 1',
+                        'Test comment 2',
+                        'Test comment 3'
                     ]
                 }
             },
             removeComment: function(i){
-                var arr = this.state.comments;
-                arr = arr.splice(i,1);
+                var arr = this.state.comments;                
+                arr.splice(i,1);                
                 this.setState({comments: arr});
             },
             updateComment: function(text, i){
@@ -81,7 +80,7 @@
                 this.setState({comments: arr});
             },
             eachComment: function(text,i){
-                return (<Comment key={i} index="{i}"> {text} </Comment>);
+                return (<Comment key={i} index={i} updateCommentText={this.updateComment} removeComment={this.removeComment}> {text} </Comment>);
             },
             render: function(){
                 return (

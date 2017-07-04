@@ -64,19 +64,30 @@
             getInitialState: function(){
                 return {
                     comments: [
-                        'My name is Ashish',
-                        'I live in Agra',
-                        'I am a software engineer'
+                        'Test comment 1',
+                        'Test comment 2',
+                        'Test comment 3'
                     ]
                 }
+            },
+            removeComment: function(i){
+                var arr = this.state.comments;
+                arr = arr.splice(i,1);
+                this.setState({comments: arr});
+            },
+            updateComment: function(text, i){
+                var arr = this.state.comments;
+                arr[i] = text;
+                this.setState({comments: arr});
+            },
+            eachComment: function(text,i){
+                return (<Comment key={i} index="{i}"> {text} </Comment>);
             },
             render: function(){
                 return (
                     <div className= "board">
                         {
-                            this.state.comments.map(function(text,i){
-                                return (<Comment key={i}> {text} </Comment>);
-                            })
+                            this.state.comments.map(this.eachComment)
                         }
                     </div>
                 );
